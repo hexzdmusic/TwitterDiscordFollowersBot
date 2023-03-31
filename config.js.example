@@ -1,0 +1,14 @@
+global.config = {
+
+  'token': "",
+  'prefix': "!!",
+  'ownerID': "",
+  'modules': [],
+  'beginningText': 'Twitter Followers: ',
+  'voiceChatId': '',
+  'twitterHandle': 'elonmusk',
+  'seconds': 5,
+  'lcLolAPIkey': '',
+  'lcLolSecretKey': ''
+
+};
