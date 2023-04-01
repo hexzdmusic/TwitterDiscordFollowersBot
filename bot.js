@@ -68,7 +68,7 @@ fetch('https://livecounts.lol/twitter?name='+config.twitterHandle+'&akey='+confi
 			lastTwitterFollowersCount = d.followers_count;
 	bot.botSelf.channels.cache.get(config.voiceChatId).setName(`${config.beginningText} ${numberWithCommas(lastTwitterFollowersCount)} (${nextMilestonePercentage(lastTwitterFollowersCount)} next to new Milestone)`);
 			}
-		});
+		}).catch((err)=>{console.log(err);});
 	}, 1000*config.seconds);
 });
 bot.botSelf.login(bot.token);
