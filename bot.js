@@ -61,7 +61,9 @@ var lastTwitterFollowersCount = 0;
 bot.botSelf.once(Events.ClientReady, () => {
 	console.log('Ready!');
 	//bot.botSelf.guilds.cache.fetch();
+
 	setInterval(() => {
+	try {
 fetch('https://livecounts.lol/twitter?name='+config.twitterHandle+'&akey='+config.lcLolAPIkey+'&skey='+config.lcLolSecretKey, {method: 'GET', headers: {'origin': 'livecounts.lol', 'Referer': 'https://livecounts.lol'}}).then(res=>res.json()).then((d) => {
 			if(d.followers_count != lastTwitterFollowersCount) {
 			if(!bot.botSelf.channels.cache.get(config.voiceChatId)) return;
@@ -69,6 +71,10 @@ fetch('https://livecounts.lol/twitter?name='+config.twitterHandle+'&akey='+confi
 	bot.botSelf.channels.cache.get(config.voiceChatId).setName(`${config.beginningText} ${numberWithCommas(lastTwitterFollowersCount)} (${nextMilestonePercentage(lastTwitterFollowersCount)} next to new Milestone)`);
 			}
 		}).catch((err)=>{console.log(err);});
+					} catch(err1) {
+				console.log(err1);
+			}
+
 	}, 1000*config.seconds);
 });
 bot.botSelf.login(bot.token);
